@@ -13,21 +13,23 @@ app.get('/', (req, res) => {
 })
 
 app.post('/charge', (req, res) => {
-    console.log('Got request');
-    res.send({
+    let payment = {
         "charge_id": "ch_a9dc6297cd1a4fb095e61b1a9cf2dd1d",
         "error_code": null,
         "error_message": null
-    });
+    };
+    console.log(`Got request, responding with: ${JSON.stringify(payment, null, 4)}`);
+    res.send(payment);
 })
 
 app.post('/tokenize', (req, res) => {
-    console.log('Got request');
-    res.send({
+    let token = {
         "token_id": "tk_a9dc6297cd1a4fb095e61b1a9cf2dd1d",
         "error_code": null,
         "error_message": null
-    });
+    };
+    console.log(`Got request, responding with: ${JSON.stringify(token, null, 4)}`);
+    res.send(token);
 })
 
 app.post('/statuscallback', (req, res) => {
