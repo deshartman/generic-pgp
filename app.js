@@ -12,12 +12,25 @@ app.get('/', (req, res) => {
     res.send('Custom Payment Gateway Proxy')
 })
 
+app.use(express.json()) // for parsing application/json
+app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
+
+
 app.post('/charge', (req, res) => {
+    console.log(`Got request`); // ${JSON.stringify(req, null, 4)}`);
+
+    console.log(req.header('Authorization'));
+
+    console.log(req.body)
+
+
     let payment = {
         "charge_id": "ch_a9dc6297cd1a4fb095e61b1a9cf2dd1d",
         "error_code": null,
         "error_message": null
     };
+
+
     console.log(`Got request, responding with: ${JSON.stringify(payment, null, 4)}`);
     res.send(payment);
 })
