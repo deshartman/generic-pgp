@@ -3,10 +3,17 @@ const basicAuth = require('express-basic-auth')
 const app = express()
 const port = 3000
 
-// app.use(basicAuth({
-//     users: { 'foo': 'bar' },
-//     challenge: false,
-// }));
+app.use(basicAuth({
+    users: { 'foo': 'bar' },
+    challenge: false,
+}));
+
+function defaultContentTypeMiddleware(req, res, next) {
+    req.headers['content-type'] = req.headers['content-type'] || 'application/json';
+    next();
+}
+app.use(defaultContentTypeMiddleware);
+
 
 app.get('/', (req, res) => {
     res.send('Custom Payment Gateway Proxy')
